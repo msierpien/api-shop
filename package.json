@@ -1,0 +1,33 @@
+{
+	"name": "graphql-server",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"type": "module",
+  "scripts": {
+    "codegen": "graphql-codegen --config .graphqlrc.ts",
+    "postinstall": "pnpm codegen",
+    "dev": "tsx watch src/server.ts",
+    "seed": "tsx prisma/seed.ts"
+  },
+	"keywords": [],
+	"author": "Michał Miszczyszyn <michal@mmiszy.pl> (https://typeofweb.com/)",
+	"license": "MIT",
+	"devDependencies": {
+		"@eddeee888/gcg-typescript-resolver-files": "0.5.0",
+		"@faker-js/faker": "8.0.2",
+		"@graphql-codegen/cli": "4.0.1",
+		"graphql": "16.7.1",
+		"prettier": "3.0.0",
+		"prisma": "5.0.0",
+		"tsx": "3.12.7",
+		"typescript": "5.1.6"
+	},
+	"dependencies": {
+		"@apollo/server": "4.10.4",
+		"@graphql-tools/load-files": "7.0.0",
+		"@prisma/client": "5.0.0",
+		"graphql-scalars": "1.22.2",
+		"graphql-yoga": "4.0.3"
+	}
+}
