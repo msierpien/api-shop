@@ -24,3 +24,4 @@ const { url } = await startStandaloneServer(server, {
 });
 
 console.log(`🚀  Server ready at: ${url}`);
+console.log(`🚀  GraphQL server ready at: ${url}graphql`);
