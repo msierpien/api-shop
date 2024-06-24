@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 app.post('/webhook', (req, res) => {
   if (req.body.ref === 'refs/heads/main') {
     // Skrypt do wykonania po otrzymaniu webhooka
-    exec('sh ../deploy-script.sh', (error, stdout, stderr) => {
+    exec('sh ./deploy-script.sh', (error, stdout, stderr) => {
       if (error) {
         console.error(`Error: ${error.message}`);
         return;
@@ -36,6 +36,7 @@ app.post('/webhook', (req, res) => {
     });
   }
   res.status(200).send('Webhook received');
+  console.log('Webhook received');
 });
 
 const { url } = await new Promise(async (resolve) => {
@@ -52,3 +53,4 @@ const { url } = await new Promise(async (resolve) => {
   }));
 });
 
+console.log(`🚀  GraphQL server running at: ${url}graphql`);
