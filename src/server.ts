@@ -54,3 +54,4 @@ const { url } = await new Promise(async (resolve) => {
 });
 
 console.log(`🚀  GraphQL server running at: ${url}graphql`);
+console.log(`🚀  Test: ${url}webhook`);
