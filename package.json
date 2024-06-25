@@ -5,13 +5,24 @@
 	"main": "index.js",
 	"type": "module",
 	"scripts": {
+		"start-tsx": "tsx src/server.ts",
 		"codegen": "graphql-codegen --config .graphqlrc.ts",
 		"postinstall": "pnpm codegen",
-		"dev": "tsx watch src/server.ts",
-		"seed": "tsx prisma/seed.ts"
+		"db:console": "docker compose run postgres psql -h localhost -U postgres -d webapp_dev",
+    "prisma:migrate": "pnpx prisma migrate dev",
+		"prisma:generate": "npx prisma generate",
+    "prisma:studio": "npx prisma studio",
+		"docker:db:migrate": "docker compose run graphql-app pnpm prisma:migrate",
+		"docker:db:generate": "docker compose run graphql-app pnpm prisma:generate",
+		"docker:db:studio": "docker compose run graphql-app pnpm prisma:studio",
+		"seed": "tsx prisma/seed.ts",
+		"docker:seed": "docker compose run graphql-app pnpm seed",
+		"start:docker": "pnpm start-tsx && node --inspect=0.0.0.0 src/server.ts",
+		"dev": "tsx watch src/server.ts"
+
 	},
 	"keywords": [],
-	"author": "Michał Miszczyszyn <michal@mmiszy.pl> (https://typeofweb.com/)",
+	"author": "",
 	"license": "MIT",
 	"devDependencies": {
 		"@eddeee888/gcg-typescript-resolver-files": "0.5.0",

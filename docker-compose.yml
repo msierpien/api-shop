@@ -31,7 +31,11 @@ services:
       - "4000:4000"
     networks:
       - app-network
-
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/.pnpm-store
+      - /usr/src/app/node_modules
+    command: pnpm start:docker
 networks:
   app-network:
     driver: bridge

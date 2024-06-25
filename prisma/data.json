@@ -1,0 +1,16 @@
+{
+  "categories": [
+    { "name": "Books", "slug": "books" },
+    { "name": "Electronics", "slug": "electronics" },
+    { "name": "Clothing", "slug": "clothing" }
+  ],
+  "products": [
+    { "name": "Book 1", "slug": "book-1", "description": "A great book", "categorySlug": "books" },
+    { "name": "Book 2", "slug": "book-2", "description": "Another great book", "categorySlug": "books" },
+    { "name": "Laptop", "slug": "laptop", "description": "A powerful laptop", "categorySlug": "electronics" }
+  ],
+  "reviews": [
+    { "title": "Great product", "description": "Really enjoyed this product", "rating": 5, "productSlug": "book-1" },
+    { "title": "Not bad", "description": "It was okay", "rating": 3, "productSlug": "book-2" }
+  ]
+}

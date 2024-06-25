@@ -46,15 +46,21 @@ export type Image = {
 
 export type Product = {
 	__typename?: "Product";
+	category: ProductCategory;
 	createdAt: Scalars["DateTime"]["output"];
 	description: Scalars["String"]["output"];
 	id: Scalars["ID"]["output"];
-	images: Array<Image>;
 	name: Scalars["String"]["output"];
-	price: Scalars["Int"]["output"];
 	reviews: Array<Review>;
 	slug: Scalars["String"]["output"];
 	updatedAt: Scalars["DateTime"]["output"];
+};
+
+export type ProductCategory = {
+	__typename?: "ProductCategory";
+	id: Scalars["ID"]["output"];
+	name: Scalars["String"]["output"];
+	slug: Scalars["String"]["output"];
 };
 
 export type Query = {
@@ -218,8 +224,9 @@ export type ResolversTypes = {
 	String: ResolverTypeWrapper<Mapper<Scalars["String"]["output"]>>;
 	Product: ResolverTypeWrapper<Mapper<Product>>;
 	ID: ResolverTypeWrapper<Mapper<Scalars["ID"]["output"]>>;
-	Int: ResolverTypeWrapper<Mapper<Scalars["Int"]["output"]>>;
+	ProductCategory: ResolverTypeWrapper<Mapper<ProductCategory>>;
 	Query: ResolverTypeWrapper<{}>;
+	Int: ResolverTypeWrapper<Mapper<Scalars["Int"]["output"]>>;
 	Review: ResolverTypeWrapper<Mapper<Review>>;
 	Boolean: ResolverTypeWrapper<Mapper<Scalars["Boolean"]["output"]>>;
 };
@@ -231,8 +238,9 @@ export type ResolversParentTypes = {
 	String: Mapper<Scalars["String"]["output"]>;
 	Product: Mapper<Product>;
 	ID: Mapper<Scalars["ID"]["output"]>;
-	Int: Mapper<Scalars["Int"]["output"]>;
+	ProductCategory: Mapper<ProductCategory>;
 	Query: {};
+	Int: Mapper<Scalars["Int"]["output"]>;
 	Review: Mapper<Review>;
 	Boolean: Mapper<Scalars["Boolean"]["output"]>;
 };
@@ -256,6 +264,11 @@ export type ProductResolvers<
 	ParentType extends
 		ResolversParentTypes["Product"] = ResolversParentTypes["Product"],
 > = {
+	category?: Resolver<
+		ResolversTypes["ProductCategory"],
+		ParentType,
+		ContextType
+	>;
 	createdAt?: Resolver<
 		ResolversTypes["DateTime"],
 		ParentType,
@@ -267,13 +280,7 @@ export type ProductResolvers<
 		ContextType
 	>;
 	id?: Resolver<ResolversTypes["ID"], ParentType, ContextType>;
-	images?: Resolver<
-		Array<ResolversTypes["Image"]>,
-		ParentType,
-		ContextType
-	>;
 	name?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
-	price?: Resolver<ResolversTypes["Int"], ParentType, ContextType>;
 	reviews?: Resolver<
 		Array<ResolversTypes["Review"]>,
 		ParentType,
@@ -285,6 +292,17 @@ export type ProductResolvers<
 		ParentType,
 		ContextType
 	>;
+	__isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type ProductCategoryResolvers<
+	ContextType = Context,
+	ParentType extends
+		ResolversParentTypes["ProductCategory"] = ResolversParentTypes["ProductCategory"],
+> = {
+	id?: Resolver<ResolversTypes["ID"], ParentType, ContextType>;
+	name?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
+	slug?: Resolver<ResolversTypes["String"], ParentType, ContextType>;
 	__isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
@@ -337,6 +355,7 @@ export type Resolvers<ContextType = Context> = {
 	DateTime?: GraphQLScalarType;
 	Image?: ImageResolvers<ContextType>;
 	Product?: ProductResolvers<ContextType>;
+	ProductCategory?: ProductCategoryResolvers<ContextType>;
 	Query?: QueryResolvers<ContextType>;
 	Review?: ReviewResolvers<ContextType>;
 };
